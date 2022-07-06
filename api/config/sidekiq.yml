@@ -1,0 +1,4 @@
+:schedule:
+  invoice_generator_job:
+    cron: '0 0 0 * * *'
+    class: 'Invoice::GenerateInvoiceJob'
