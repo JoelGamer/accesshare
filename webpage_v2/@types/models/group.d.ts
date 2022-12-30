@@ -1,0 +1,1 @@
+interface Group extends RailsModel {}

@@ -3,22 +3,20 @@ class GroupUsersController < ApplicationController
   before_action :set_group_user, except: %i[index create]
 
   def index
-    render json: @group.group_users
+    @group_users = @group.group_users
   end
 
-  def show
-    render json: @group_user
-  end
+  def show; end
 
   def create
     user = User.find_by(email: create_params[:email])
-    render json: @group.group_users.create!(user: user)
+    @group_user = @group.group_users.create!(user: user)
   rescue ActiveRecord::RecordNotFound => e
     render json: e.message, status: :not_found
   end
 
   def destroy
-    render json: @group_user.destroy
+    @group_user.destroy!
   end
 
   private
