@@ -15,9 +15,9 @@ import userSession from '../../services/user-session';
 
 const ListItems = [
   { title: 'Dashboard', icon: <DashboardIcon />, route: '/dashboard' },
-  { title: 'Accounts', icon: <AppsIcon />, route: '/accounts' },
-  { title: 'Invoices', icon: <BarChartIcon />, route: '/invoices' },
-  { title: 'Users', icon: <AdminPanelSettingsIcon />, route: '/group-users' },
+  { title: 'Accounts', icon: <AppsIcon />, route: '/dashboard/accounts' },
+  { title: 'Invoices', icon: <BarChartIcon />, route: '/dashboard/invoices' },
+  { title: 'Users', icon: <AdminPanelSettingsIcon />, route: '/dashboard/users' },
 ];
 
 const AppHeader: FC = () => {

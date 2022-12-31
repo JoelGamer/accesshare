@@ -1,9 +1,21 @@
+import { MissingRequirement, Unauthorized } from '../utilities/errors';
 import groupService from './api/group-service';
+import userService from './api/user-service';
 import localStorageService from './local-storage-service';
 
 class UserSession {
   private _token = '';
   private _group: Group | null = null;
+
+  async initialize(token?: string, group?: Group | number) {
+    this.initializeSession(token);
+    if (!this._token) throw new Unauthorized();
+
+    await userService.me();
+
+    await this.initializeGroup(group);
+    if (!this._group) throw new MissingRequirement('Group');
+  }
 
   initializeSession(token?: string) {
     this._token = token || localStorageService.getItem('token') || '';

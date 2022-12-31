@@ -20,10 +20,7 @@ const Login: NextPageWithLayout = () => {
         const { token } = await userService.login(submittedValues);
         userSession.initializeSession(token);
 
-        router.replace('/dashboard');
-
-        setSeverity('success');
-        setMessage('Logged in successfully');
+        router.push('/login/groups');
       } catch (err) {
         setSeverity('error');
         setMessage('Incorrect email and/or password!');

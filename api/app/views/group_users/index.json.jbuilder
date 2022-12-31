@@ -9,4 +9,5 @@ json.array! @group_users do |group_user|
     json.name group_user.user.name
     json.username group_user.user.username
   end
+  json.owner group_user.user.owner?
 end

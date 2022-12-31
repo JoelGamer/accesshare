@@ -1,1 +1,3 @@
-interface Group extends RailsModel {}
+interface Group extends RailsModel {
+  name: string;
+}

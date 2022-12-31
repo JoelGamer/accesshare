@@ -9,7 +9,7 @@ class User < ApplicationRecord
   validates :username, :email, presence: true, uniqueness: true
   validates :name, presence: true
 
-  def owner?(group:)
+  def owner?(group: self.group)
     group.id == self.group.id
   end
 end

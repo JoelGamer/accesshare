@@ -7,7 +7,7 @@ export default class APIService {
   protected axios: AxiosInstance;
 
   constructor() {
-    this.axios = axios.create({ baseURL, headers: { 'Authorization': token, 'Accept': 'application/json' } })
+    this.axios = axios.create({ baseURL, headers: { 'Authorization': token, 'Accept': 'application/json' } });
   }
 
   protected responseToHash<T extends RailsModel>(model: T, hash: Hash<T> = {} as Hash<T>) {
