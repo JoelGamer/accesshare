@@ -5,7 +5,7 @@ class InvoicesController < ApplicationController
   def index
     invoices = @group.invoices
 
-    if @current_user.owner?(@group)
+    if @current_user.owner?(group: @group)
       query = invoices.ransack(params[:q])
 
       @result = query.result

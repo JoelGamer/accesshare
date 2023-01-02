@@ -1,6 +1,8 @@
 class Account < ApplicationRecord
   has_secure_password
-  after_create :create_owner_group_user
+  after_create :create_account_access
+
+  attribute :public_until, default: -> { 1.hour.from_now }
 
   belongs_to :group
 
@@ -8,8 +10,8 @@ class Account < ApplicationRecord
 
   validates :name, :email, :price, :public_until, presence: true
 
-  def password_accessable?
-    public_until > Time.now
+  def password_accessible?
+    public_until > Time.now && public_password.present?
   end
 
   private

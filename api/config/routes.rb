@@ -11,15 +11,16 @@ Rails.application.routes.draw do
 
   resources :groups do
     resources :accounts do
-      resources :accounts_password, only: %i[index create]
+      get :password, on: :member
+      post :generate_password, on: :member
     end
 
-    resources :group_invoices do
+    resources :invoices do
       post :paid, on: :member
     end
 
     resources :group_users, except: %i[update] do
-      resources :permissions, except: %i[update], controller: :group_users_permissions
+      resources :permissions, except: %i[update], controller: :account_accesses
     end
   end
 

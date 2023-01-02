@@ -15,13 +15,14 @@ class AccountsController < ApplicationController
   end
 
   def generate_password
-    @account.account_password.update!(password: Security::SaltAndPepper.encode(SecureRandom.base58), public_until: 1.hours.from_now)
+    password = Security::SaltAndPepper.encode(SecureRandom.base58)
+    @account.update!(password: password, public_password: password, public_until: 1.hour.from_now)
 
     head :created
   end
 
   def password
-    return head :unprocessable_entity unless @account.password_accessable?
+    return head :unprocessable_entity unless @account.password_accessible?
 
     @password = Security::SaltAndPepper.decode(@account.public_password)
   end

@@ -1,4 +1,4 @@
-json.array! @invoices do |invoice|
+json.array! @result do |invoice|
   json.id invoice.id
   json.price invoice.price
   json.paid_in invoice.paid_in
